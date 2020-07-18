@@ -1,0 +1,47 @@
+.buttons-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 300px);
+    display: flex;
+    flex-direction: row;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    box-sizing: border-box;
+    background-color: black;
+    justify-content: center;
+    max-width: 700px;
+    height: 120px;
+    position:relative;
+    
+}
+
+.buttonImage{
+    padding: 20px;
+    width: 90px;
+    height: 90px;
+}
+
+.score-container{
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    max-width: 300px;
+    position: relative;
+}
+
+.app{
+    background-color: rgba(163, 163, 233, 0.575);
+    background-position: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
