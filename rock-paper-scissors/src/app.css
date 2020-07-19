@@ -1,47 +1,175 @@
-.buttons-container{
-    display: grid;
-    grid-template-columns: repeat(auto-fit, 300px);
-    display: flex;
-    flex-direction: row;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    box-sizing: border-box;
-    background-color: black;
-    justify-content: center;
-    max-width: 700px;
-    height: 120px;
-    position:relative;
-    
-}
-
-.buttonImage{
-    padding: 20px;
-    width: 90px;
-    height: 90px;
-}
-
-.score-container{
-    text-align: center;
-    border-color: black;
-    border-style: solid;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 50px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    max-width: 300px;
-    position: relative;
-}
-
 .app{
-    background-color: rgba(163, 163, 233, 0.575);
+    background-image: url(https://static.vecteezy.com/system/resources/thumbnails/000/576/820/small/picthai-free-vector60-8-01.jpg);
+    background-color: #fff;
     background-position: center;
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.buttons-princ{
+}
+
+.buttons-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 100px);
+    flex-direction: row;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    box-sizing: border-box;
+    justify-content: space-around;
+    position: relative;
+    margin: auto;
+    padding-top: 30px;
+    width: 80%;
+    height: auto;
+
+}
+
+.buttonImage{
+    padding-top: 10px;
+    width: 100%;
+    display: block;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button-container{
+    opacity: 0.87;
+    padding: 1px;
+    border-style: outset;
+
+}
+.button-container:hover{
+    opacity: 1.5;
+    cursor: pointer;}
+
+.buttonImage:hover{
+    opacity: 1.5;
+    cursor: pointer;
+}
+
+.button-container:active {
+    transform: translateY(3px);
+    box-shadow: black;
+    -webkit-box-shadow: inset 0px 0px 5px black;
+    -moz-box-shadow: inset 0px 0px 5px black;
+         box-shadow: inset 0px 0px 5px #c1c1c1;
+}
+
+.score-container{
+
+    text-align: center;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    justify-content: space-around;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    max-width: 300px;
+    width:100%;
+    height: auto;
+    position: relative;
+    margin: auto;
+}
+
+.title-container{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+    background-color: brown;
+}
+.title{
+   justify-self: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 33px;
+    letter-spacing: 2px;
+    word-spacing: 3.2px;
+    color: #f8f5f5;
+    font-weight: 700;
+    padding-left: 30px;
+    text-shadow: 2px 2px 2px rgb(34, 34, 34) ;
+
+}
+
+.game-info{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    width: 460px;
+    float:left;
+    font-family: Arial, Helvetica, sans-serif;
+    word-wrap: break-word;
+    justify-content: center;
+    position: relative;
+}
+
+.rounds{
+    padding-left: 80px;
+    padding-top: 20px;
+    font-weight: bold;
+    font-size: larger;
+
+}
+
+
+
+h2{
+    margin-top: 35px;
+    margin-left: 70px;
+    color: rgba(100, 0, 58, 0.705);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+}
+
+#rock-container{
+    background: rgb(251,72,72);
+    background: radial-gradient(circle, rgba(251,72,72,1) 49%, rgba(255,107,107,1) 100%);    }
+#paper-container{
+    background: rgb(247,130,35);
+background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 100%);}
+
+#scissors-container{
+    background: rgb(211,146,237);
+    background: radial-gradient(circle, rgb(69, 12, 90) 3%, rgb(177, 89, 221) 100%);}
+
+#lizard-container{
+    background: rgb(45,133,10);
+    background: radial-gradient(circle, rgba(45,133,10,1) 0%, rgba(107,218,65,1) 100%);
+}
+#spock-container{
+    background: rgb(20,69,158);
+    background: radial-gradient(circle, rgba(20,69,158,1) 0%, rgba(65,108,218,1) 100%);}
+
+
+.choices-container{
+
+    margin: auto;
+    padding-top: 70px;
+    border:black;
+    position: relative;
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    min-width: 400px;
+    justify-content: center;
+    text-align: center;
+ 
+}
+
+.winner{
+    position: relative;
+
+}
+
+.player-container{
+
+}
+
+.computer-container{
 }

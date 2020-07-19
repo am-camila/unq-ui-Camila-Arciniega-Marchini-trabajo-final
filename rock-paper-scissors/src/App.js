@@ -1,61 +1,40 @@
 import React, {useState} from 'react';
+import 'bootstrap/dist/css/bootstrap.css';
 import './app.css';
-import rock from './images/rock1.jpg';
-import paper from './images/paper.jpg';
-import scissors from './images/scissors.jpg';
-import lizard from './images/lizard.jpg';
-import spock from './images/spock1.jpg';
+import rock from './images/4rock.png';
+import paper from './images/2paper.png';
+import scissors from './images/5scissors.png';
+import lizard from './images/1lizardo.png';
+import spock from './images/3spock.png';
 import game from './game.js'
+
 
 
 export default function App(){
 
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
+  const [roundsLeft, setRoundsLeft] = useState(5);
+  const [playerChoice, setPlayerChoice] = useState(null);
+  const [computerChoice, setComputerChoice] = useState(null);
+  const [winner, setWinner] = useState(null);
 
+
+  function handleChoosing(option){
+   
+   }
 
   
   return(<div className="app">
 
   <div className="intro">
-    <h1>Rock Paper Scissors Lizard Spock !</h1>
-        <p>Rules: Scissors cuts Paper, Paper covers Rock, Rock crushes Lizard, 
-          Lizard poisons Spock, Spock smashes Scissors, Scissors decapitates Lizard,Lizard eats Paper
-          Paper disproves Spock, Spock vaporizes Rock, and Rock crushes Scissors</p>
+    <div className="title-container">
+    <h1 className="title">Rock Paper Scissors Lizard Spock !</h1>
+    </div>
   </div>
-    <h2>Choose an option</h2>
-  <div className= "buttons-container">
-    <div className="button-container">
-     <div className="rock-button">
-        <img className="buttonImage" src={rock} alt='rock' onClick={vento=>setPlayerScore(playerScore+1)}/>
-     </div>
 
-     </div>
-     <div className="button-container">
-    <div className="paper-button">
-      <img className="buttonImage" src={paper} alt='paper' onClick={e=>setPlayerScore(playerScore+1)}/>
-    </div>
-    </div>
 
-    <div className= "button-container">
-    <div className="scissors-button">
-      <img className="buttonImage" src={scissors} alt='scissors' onClick={se=>setPlayerScore(playerScore+1)}/>
-    </div>
-    </div>
-
-    <div className= "button-container">
-    <div className="lizard-button">
-      <img className="buttonImage" src={lizard} alt='lizard' onClick={e=>setPlayerScore(playerScore+1)}/>
-    </div>
-    </div>
-
-    <div className= "button-container">
-    <div className="spock-button">
-      <img className="buttonImage" src={spock} alt='spock' onClick={e=>setPlayerScore(playerScore+1)}/>
-    </div>
-    </div>
-    
-  </div>
+  <div className="game-info">
   <div className="score-container">
       <div className="player-score">
         <p>Your score </p>
@@ -66,7 +45,68 @@ export default function App(){
         <p>{computerScore}</p>
         </div>
     </div>
-    
+    </div>
+    <div className="rounds">
+      <p>Rounds left: <span>{roundsLeft}</span></p>
+    </div>
+
+    <div className="buttons-princ">
+  <div className= "buttons-container">
+   
+    <div className="button-container" id="rock-container">
+     <div className="rock-button">
+        <img className="buttonImage" id="rock" src={rock} alt='rock' onClick={e=>handleChoosing("rock")}/>
+     </div>
+
+     </div>
+     <div className="button-container" id="paper-container">
+    <div className="paper-button">
+      <img className="buttonImage" src={paper} alt='paper' onClick={e=>setPlayerScore(playerScore+1)}/>
+    </div>
+    </div>
+
+    <div className= "button-container" id="scissors-container">
+    <div className="scissors-button">
+      <img className="buttonImage" src={scissors} alt='scissors' onClick={se=>setPlayerScore(playerScore+1)}/>
+    </div>
+    </div>
+
+    <div className= "button-container" id="lizard-container">
+      
+    <div className="lizard-button">
+      <img className="buttonImage" src={lizard} alt='lizard' onClick={e=>setPlayerScore(playerScore+1)}/>
+    </div>
+    </div>
+
+    <div className= "button-container" id="spock-container">
+    <div className="spock-button">
+      <img className="buttonImage" src={spock} alt='spock' onClick={e=>setPlayerScore(playerScore+1)}/>
+    </div>
+    </div>
+    </div>
+  </div>
+
+
+    <div className="winner">
+    <p>Winner:</p>
+    <p>{winner}</p>
+    </div>
+
+<div className="container pt-3 border choices-container">
+  <div className="row border">
+
+  <div className="col choice-container border player-container">
+    <p>Your choice</p>
+  <img className="buttonImage" src={playerChoice} alt='your choice'/>
+  </div>
+
+  <div className="col choice-container border computer-container">
+    <p>Computer choice</p>
+      <img className="buttonImage" src={spock} alt='rival choice' onClick={e=>setPlayerScore(playerScore+1)}/>
+
+  </div>
+  </div>
+</div>
   </div>)
 }
 
