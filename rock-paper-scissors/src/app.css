@@ -167,6 +167,42 @@ background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 10
 
 }
 
+.choice-image{
+    padding-top: 10px;
+    width: 100%;
+    display: none;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    animation-name: appear;
+    animation-duration: 1s;
+    
+
+  }
+  .choice-image:after {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 25px;
+  }
+  .choice-image:before {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: -25px;
+    left: 0px;
+  }
+
+  @keyframes appear {
+    0% {
+      transform: scale(1) ;
+    }
+    50% {
+      transform: scale(0.6) ;
+    }
+  }
+
 .player-container{
 
 }

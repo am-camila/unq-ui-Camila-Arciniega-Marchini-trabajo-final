@@ -21,10 +21,16 @@ export default function App(){
 
 
   function handleChoosing(option){
-   
+    setPlayerChoice(option)
+    showPlayerChoice(option)
+    setRoundsLeft(roundsLeft-1)
    }
 
-  
+   function showPlayerChoice(option) {
+    let div = document.getElementById('player-choice');
+    div.style.display = "block";
+
+}
   return(<div className="app">
 
   <div className="intro">
@@ -54,33 +60,33 @@ export default function App(){
   <div className= "buttons-container">
    
     <div className="button-container" id="rock-container">
-     <div className="rock-button">
-        <img className="buttonImage" id="rock" src={rock} alt='rock' onClick={e=>handleChoosing("rock")}/>
+     <div className="rock-button" data-toggle="collapse" href=".choice-image">
+        <img className="buttonImage" id="rock" src={rock} alt='rock' onClick={e=>handleChoosing(rock)}/>
      </div>
 
      </div>
      <div className="button-container" id="paper-container">
     <div className="paper-button">
-      <img className="buttonImage" src={paper} alt='paper' onClick={e=>setPlayerScore(playerScore+1)}/>
+      <img className="buttonImage" src={paper} alt='paper' onClick={e=>handleChoosing(paper)}/>
     </div>
     </div>
 
     <div className= "button-container" id="scissors-container">
     <div className="scissors-button">
-      <img className="buttonImage" src={scissors} alt='scissors' onClick={se=>setPlayerScore(playerScore+1)}/>
+      <img className="buttonImage" src={scissors} alt='scissors' onClick={se=>handleChoosing(scissors)}/>
     </div>
     </div>
 
     <div className= "button-container" id="lizard-container">
       
     <div className="lizard-button">
-      <img className="buttonImage" src={lizard} alt='lizard' onClick={e=>setPlayerScore(playerScore+1)}/>
+      <img className="buttonImage" src={lizard} alt='lizard' onClick={e=>handleChoosing(lizard)}/>
     </div>
     </div>
 
     <div className= "button-container" id="spock-container">
     <div className="spock-button">
-      <img className="buttonImage" src={spock} alt='spock' onClick={e=>setPlayerScore(playerScore+1)}/>
+      <img className="buttonImage" src={spock} alt='spock' onClick={e=>handleChoosing(spock)}/>
     </div>
     </div>
     </div>
@@ -97,12 +103,12 @@ export default function App(){
 
   <div className="col choice-container border player-container">
     <p>Your choice</p>
-  <img className="buttonImage" src={playerChoice} alt='your choice'/>
+  <img className="choice-image" id="player-choice" src={playerChoice} alt='your choice'/>
   </div>
 
   <div className="col choice-container border computer-container">
     <p>Computer choice</p>
-      <img className="buttonImage" src={spock} alt='rival choice' onClick={e=>setPlayerScore(playerScore+1)}/>
+      <img className="choice-image" src={spock} alt='rival choice' onClick={e=>setPlayerScore(playerScore+1)}/>
 
   </div>
   </div>
