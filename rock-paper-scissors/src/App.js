@@ -15,35 +15,40 @@ export default function App(){
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [roundsLeft, setRoundsLeft] = useState(5);
- // const [playerDisplayChoice, setPlayerDisplayChoice] = useState(null);
- // const [computerDisplayChoice, setComputerDisplayChoice] = useState(null);
-  const [playerChoice, setPlayerChoice] = useState(null);
-  const [computerChoice, setComputerChoice] = useState(null);
+  const [playerDisplayChoice, setPlayerDisplayChoice] = useState(null);
+  const [computerDisplayChoice, setComputerDisplayChoice] = useState(rock);
+  const [playerChoice, setPlayerChoice] = useState('');
+  const [computerChoice, setComputerChoice] = useState('');
   const [winner, setWinner] = useState('');
-  const choices = [{url: rock, n:'rock'},{url:paper, n:'paper'},
-    {url:scissors,n:'scissors'},{url:lizard, n:'lizard'},{url:spock,n:'spock'}]
+  const choices = ['rock','paper','scissors','lizard','spock']
 
 
   function handleChoosing(option){
+    console.log("handleChoosing", option)
     handlePlayerChoice(option)
-    showComputerChoice()
-    handleRoundWinner()
-    handleMatchWinner()
+    handleComputerChoice()
+
   }
 
    function handlePlayerChoice(option){
-     setPlayerChoice(option)
+    setPlayerChoice(option)
+    setPlayerDisplayChoice(searchURL(option))
     displayChoice('player-choice')
     //mostrar imagen de espera de compu
+    console.log("handlePlayerChoice string",playerChoice)
+    console.log("handlePlayerChoice url",playerDisplayChoice)
+
    }
 
-   function displayChoice(player){
-    let div = document.getElementById(player);
+   function displayChoice(id){
+    let div = document.getElementById(id);
     div.style.display = "block";
    }
 
-function showComputerChoice(){
-  setComputerChoice(randomChoice)
+function handleComputerChoice(){
+  let random=randomChoice()
+  setComputerChoice(random)
+  setComputerDisplayChoice(searchURL(random))
   setTimeout(function(){
     displayChoice('computer-choice')
     },2000);
@@ -51,20 +56,31 @@ function showComputerChoice(){
 }
 function randomChoice(){
   let randomNumber = Math.floor(Math.random()*choices.length)
-  console.log(choices[randomNumber])
   return (choices[randomNumber])
 }
 
+function searchURL(choice){
+ let url=null
+  if(choice==='rock'){url=rock}
+  if(choice==='paper'){url=paper}
+  if(choice==='scissors'){url=scissors}
+  if(choice==='lizard'){url=lizard}
+  if(choice==='spock'){url=spock}
+  
+  return url
+}
+
 function handleRoundWinner(){
-  console.log("PLAYERCHOICE",playerChoice.n, "COMPUTERCHOICE", computerChoice.n)
-  if (playerChoice.n === computerChoice.n){
+  console.log("PLAYERCHOICE",playerChoice, "COMPUTERCHOICE", computerChoice)
+  if (playerChoice === computerChoice){
     setPlayerScore(playerScore+1)
     setComputerScore(computerScore+1)
-  } else if ((computerChoice.n==='rock'&&(playerChoice.n==='paper'||playerChoice.n==='spock') )||
-              (computerChoice.n==='paper'&&(playerChoice.n==='scissors'||playerChoice.n==='lizard'))||
-              (computerChoice.n==='scissors'&&(playerChoice.n==='rock'||playerChoice.n==='spock'))||
-              (computerChoice.n==='lizard'&&(playerChoice.n==='scissors'||playerChoice.n==='rock'))||
-              (computerChoice.n==='spock'&&(playerChoice.n==='paper'||playerChoice.n==='lizard')) )
+    setWinner("It's a tie!")
+  } else if ((computerChoice==='rock'&&(playerChoice==='paper'||playerChoice==='spock') )||
+              (computerChoice==='paper'&&(playerChoice==='scissors'||playerChoice==='lizard'))||
+              (computerChoice==='scissors'&&(playerChoice==='rock'||playerChoice==='spock'))||
+              (computerChoice==='lizard'&&(playerChoice==='scissors'||playerChoice==='rock'))||
+              (computerChoice==='spock'&&(playerChoice==='paper'||playerChoice==='lizard')) )
               {
                 setWinner('You Win!')
                 setPlayerScore(playerScore+1)
@@ -87,7 +103,6 @@ function handleMatchWinner(){
 }
 
 }
-
 
 
 
@@ -122,35 +137,35 @@ function handleMatchWinner(){
     <div className="button-container" id="rock-container">
      <div className="rock-button" data-toggle="collapse" href=".choice-image">
         <img className="buttonImage" id="rock" src={rock} alt='rock' 
-          onClick={e=>handleChoosing({url:rock,n:'rock'})}/>
+          onClick={e=>handleChoosing('rock')}/>
      </div>
 
      </div>
      <div className="button-container" id="paper-container">
     <div className="paper-button">
       <img className="buttonImage" src={paper} alt='paper' 
-      onClick={e=>handleChoosing({url:paper,n:'paper'})}/>
+      onClick={e=>handleChoosing('paper')}/>
     </div>
     </div>
 
     <div className= "button-container" id="scissors-container">
     <div className="scissors-button">
       <img className="buttonImage" src={scissors} alt='scissors' 
-        onClick={se=>handleChoosing({url:scissors,n:'scissors}'})}/>
+        onClick={se=>handleChoosing('scissors')}/>
     </div>
     </div>
 
     <div className= "button-container" id="lizard-container">
     <div className="lizard-button">
       <img className="buttonImage" src={lizard} alt='lizard' 
-        onClick={e=>handleChoosing({url:lizard,n:'lizard'})}/>
+        onClick={e=>handleChoosing('lizard')}/>
     </div>
     </div>
 
     <div className= "button-container" id="spock-container">
     <div className="spock-button">
       <img className="buttonImage" src={spock} alt='spock' 
-        onClick={e=>handleChoosing({url:spock,n:'spock'})}/>
+        onClick={e=>handleChoosing('spock')}/>
     </div>
     </div>
     </div>
@@ -166,12 +181,12 @@ function handleMatchWinner(){
 
   <div className="col choice-container border player-container">
     <p>Your choice</p>
-  <img className="choice-image" id="player-choice" src={playerChoice.url} alt={playerChoice.n}/>
+  <img className="choice-image" id="player-choice" src={playerDisplayChoice} alt={playerChoice}/>
   </div>
 
   <div className="col choice-container border computer-container">
     <p>Computer choice</p>
-      <img className="choice-image" id="computer-choice" src={computerChoice.url} alt={computerChoice.n}/>
+      <img className="choice-image" id="computer-choice" src={computerDisplayChoice} alt={computerChoice}/>
 
   </div>
   </div>
