@@ -169,9 +169,9 @@ background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 10
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    
-     }/*animation-name: appear;
-    animation-duration: 0.6s;*/
+    animation-name: appear;
+    animation-duration: 0.6s;
+     }
     
   .choice-image:after {
     position: absolute;
