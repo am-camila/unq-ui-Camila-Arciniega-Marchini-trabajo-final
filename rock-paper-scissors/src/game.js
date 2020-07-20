@@ -1,13 +1,24 @@
 
-function match(){
+export default function game(){
 
-    let scorePlayer= 0;
-    let scoreComputer= 0;
-    let choicePlayer='';
+    const scorePlayer= 0;
+    const scoreComputer= 0;
+    const choicePlayer='';
+    const winner='';
+    const choices=['rock','paper','scissors','lizard','spock']
     
 
-function handleChoosing(){
-    
+function setPlayerChoice(optionName){
+    scorePlayer=optionName 
+}
+
+function getComputerChoosing(){
+   let random = Math.floor(Math.random()*choices.length)
+    return choices[random]
+}
+
+function getRoundWinner(){
+
 }
 
 

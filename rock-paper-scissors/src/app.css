@@ -162,11 +162,6 @@ background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 10
  
 }
 
-.winner{
-    position: relative;
-
-}
-
 .choice-image{
     padding-top: 10px;
     width: 100%;
@@ -174,11 +169,10 @@ background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 10
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    animation-name: appear;
-    animation-duration: 1s;
     
-
-  }
+     }/*animation-name: appear;
+    animation-duration: 0.6s;*/
+    
   .choice-image:after {
     position: absolute;
     width: 50px;
@@ -202,6 +196,20 @@ background: radial-gradient(circle, rgb(236, 117, 19) 69%, rgba(255,143,61,1) 10
       transform: scale(0.6) ;
     }
   }
+
+  .winner{
+    position: relative;
+    display: block;
+    font-size: 30px;
+    color: rgb(2, 2, 68);
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 5px;
+  }
+
+.score{
+    font-weight: bold;
+}
 
 .player-container{
 
