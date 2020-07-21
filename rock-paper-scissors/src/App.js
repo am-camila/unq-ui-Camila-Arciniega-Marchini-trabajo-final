@@ -130,7 +130,7 @@ function resetAll(){
   <div className="reset-button-container">
       <p className="button" onClick={resetAll}>Reset</p>
     </div>
-    
+
   <div className="score-container">
       <div className="player-score">
         <p>Your score </p>
@@ -191,7 +191,7 @@ function resetAll(){
 <div className="container pt-3">
   <div className="row choices-container">
   <div className="col choice-container  player-container">
-  <p className="choice-text">Your choice: {playerChoice}</p>
+  <p className="choice-text">Your choice: <span>{playerChoice}</span></p>
   <img className="choice-image" id="player-choice" src={playerDisplayChoice} alt={playerChoice}/>
   </div>
 

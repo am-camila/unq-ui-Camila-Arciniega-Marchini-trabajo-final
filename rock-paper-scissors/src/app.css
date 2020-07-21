@@ -244,3 +244,16 @@ background: radial-gradient(circle, rgb(223, 108, 14) 69%, rgb(247, 133, 52) 100
     background: black;
     margin-left: 5px;
 }
+
+.button:hover{
+    color: orange;
+}
+
+.button:active {
+    background: #e5e5e5;
+    color: rgba(0, 0, 0, 0.966);
+    -webkit-box-shadow: inset 0px 0px 5px #494848;
+       -moz-box-shadow: inset 0px 0px 5px #6b6767;
+            box-shadow: inset 0px 0px 5px #555151;
+            outline: none;
+  }
