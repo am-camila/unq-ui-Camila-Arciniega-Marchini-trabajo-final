@@ -21,7 +21,7 @@
     justify-content: space-around;
     position: relative;
     margin: auto;
-    margin-top: 20px;
+    margin-top: 50px;
     padding-top: 2px;
     padding-bottom: 3.5px;
     width: 55%;
@@ -222,27 +222,25 @@ background: radial-gradient(circle, rgb(223, 108, 14) 69%, rgb(247, 133, 52) 100
     font-weight: bold;
 }
 
-.modal{
-    z-index: 100;
-    background: white;
-    position: relative;
-    margin: 1.75rem auto;
-    border-radius: 3px;
-    max-width: 500px;
-    padding: 2rem;
-  
-}
-
-.modal-backgroud{
-    position:fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.507);
+#cpu-text-choice{
+    display: none;
 }
 
 .choice-text{
     font-weight: bold;
     font-family: monospace;
+}
+
+.reset-button-container{
+    position: relative;
+    max-width: 70px;
+    text-align: center;
+    margin: initial;
+}
+
+.button{
+    cursor: pointer;
+    color: blanchedalmond;
+    background: black;
+    margin-left: 5px;
 }

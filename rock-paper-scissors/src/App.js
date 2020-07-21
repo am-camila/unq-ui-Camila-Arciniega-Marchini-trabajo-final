@@ -12,13 +12,11 @@ export default function App(){
 
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
-  const [roundsLeft, setRoundsLeft] = useState(5);
   const [playerDisplayChoice, setPlayerDisplayChoice] = useState(null);
   const [computerDisplayChoice, setComputerDisplayChoice] = useState(null);
   const [playerChoice, setPlayerChoice] = useState('');
   const [computerChoice, setComputerChoice] = useState('');
   const [winner, setWinner] = useState('');
-  const [showFinalResult, setShowFinalResult] = useState(false);
   const choices = ['rock','paper','scissors','lizard','spock'];
 
 
@@ -30,9 +28,7 @@ export default function App(){
     handlePlayerChoice(option);
     setComputerChoice(random);
     setComputerDisplayChoice(searchImage(random));
-    setTimeout(function(){
-      displayElement('computer-choice')
-      },500);
+    displayComputerChoice()
     handleRoundWinner(option, random);
   }
 
@@ -52,10 +48,20 @@ export default function App(){
     div.style.display = "none";
    }
 
+   function displayComputerChoice(){
+    setTimeout(function(){
+      displayElement('computer-choice')
+      },500);
+      setTimeout(function(){
+        displayElement('cpu-text-choice')
+        },500);
+   }
+
    function resetAllElementsDisplay(){
     resetELementDisplay('player-choice');
     resetELementDisplay('computer-choice');
-    resetELementDisplay('winner-text')
+    resetELementDisplay('winner-text');
+    resetELementDisplay('cpu-text-choice');
    }
 
 function randomChoice(){
@@ -99,7 +105,13 @@ function handleRoundWinner(playerChoice,computerChoice){
               setComputerScore(computerScore+1);
               handleSetWinner('Computer Wins!');
               }}
+            }
 
+
+function resetAll(){
+  resetAllElementsDisplay();
+  setPlayerScore(0);
+  setComputerScore(0);
 
   
 }
@@ -114,6 +126,11 @@ function handleRoundWinner(playerChoice,computerChoice){
   </div>
 
   <div className="game-info">
+
+  <div className="reset-button-container">
+      <p className="button" onClick={resetAll}>Reset</p>
+    </div>
+    
   <div className="score-container">
       <div className="player-score">
         <p>Your score </p>
@@ -179,7 +196,7 @@ function handleRoundWinner(playerChoice,computerChoice){
   </div>
 
   <div className="col choice-container  computer-container">
-  <p className="choice-text">Computer choice: {computerChoice}</p>
+  <p className="choice-text">Computer choice: <span id="cpu-text-choice">{computerChoice}</span></p>
       <img className="choice-image" id="computer-choice" src={computerDisplayChoice} alt={computerChoice}/>
   </div>
   </div>
