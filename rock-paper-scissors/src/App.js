@@ -8,78 +8,83 @@ import lizard from './images/1lizardo.png';
 import spock from './images/3spock.png';
 
 
-
 export default function App(){
 
   const [playerScore, setPlayerScore] = useState(0);
   const [computerScore, setComputerScore] = useState(0);
   const [roundsLeft, setRoundsLeft] = useState(5);
   const [playerDisplayChoice, setPlayerDisplayChoice] = useState(null);
-  const [computerDisplayChoice, setComputerDisplayChoice] = useState(rock);
+  const [computerDisplayChoice, setComputerDisplayChoice] = useState(null);
   const [playerChoice, setPlayerChoice] = useState('');
   const [computerChoice, setComputerChoice] = useState('');
   const [winner, setWinner] = useState('');
-  const choices = ['rock','paper','scissors','lizard','spock']
+  const [showFinalResult, setShowFinalResult] = useState(false);
+  const choices = ['rock','paper','scissors','lizard','spock'];
 
 
   function handleChoosing(option){
-    let random=randomChoice()
-
-    handlePlayerChoice(option)
-    setComputerChoice(random)
-    setComputerDisplayChoice(searchURL(random))
-    setTimeout(function(){
-      displayChoice('computer-choice')
-      },2000);
-    handleRoundWinner(option, random)
-    handleMatchWinner()
     
+    let random=randomChoice();
+    
+    resetAllElementsDisplay();
+    handlePlayerChoice(option);
+    setComputerChoice(random);
+    setComputerDisplayChoice(searchImage(random));
+    setTimeout(function(){
+      displayElement('computer-choice')
+      },500);
+    handleRoundWinner(option, random);
   }
 
    function handlePlayerChoice(option){
-    setPlayerChoice(option)
-    setPlayerDisplayChoice(searchURL(option))
-    displayChoice('player-choice')
-    //mostrar imagen de espera de compu
-
+    setPlayerChoice(option);
+    setPlayerDisplayChoice(searchImage(option));
+    displayElement('player-choice');
    }
 
-   function displayChoice(id){
+   function displayElement(id){
     let div = document.getElementById(id);
     div.style.display = "block";
    }
 
-function handleComputerChoice(){
-  let random=randomChoice()
-  //setComputerChoice(random)
-  setComputerDisplayChoice(searchURL(random))
-  setTimeout(function(){
-    displayChoice('computer-choice')
-    },2000);
-  
-}
+   function resetELementDisplay(id){
+    let div = document.getElementById(id);
+    div.style.display = "none";
+   }
+
+   function resetAllElementsDisplay(){
+    resetELementDisplay('player-choice');
+    resetELementDisplay('computer-choice');
+    resetELementDisplay('winner-text')
+   }
+
 function randomChoice(){
-  let randomNumber = Math.floor(Math.random()*choices.length)
-  return (choices[randomNumber])
+  let randomNumber = Math.floor(Math.random()*choices.length);
+  return (choices[randomNumber]);
 }
 
-function searchURL(choice){
- let url=null
-  if(choice==='rock'){url=rock}
-  if(choice==='paper'){url=paper}
-  if(choice==='scissors'){url=scissors}
-  if(choice==='lizard'){url=lizard}
-  if(choice==='spock'){url=spock}
-  
-  return url
+function searchImage(choice){
+ let image=null;
+  if(choice==='rock'){image=rock};
+  if(choice==='paper'){image=paper};
+  if(choice==='scissors'){image=scissors};
+  if(choice==='lizard'){image=lizard};
+  if(choice==='spock'){image=spock};
+
+  return image;
+}
+
+function handleSetWinner(string){
+  setWinner(string);
+  setTimeout( function(){displayElement('winner-text')},900);
+
 }
 
 function handleRoundWinner(playerChoice,computerChoice){
-  console.log("PLAYER CHOICE",playerChoice, "COMPUTER CHOICE", computerChoice)
   if (playerChoice === computerChoice){
-    setPlayerScore(playerScore+1)
-    setComputerScore(computerScore+1)
-    setWinner("It's a tie!")
+    setPlayerScore(playerScore+1);
+    setComputerScore(computerScore+1);
+    handleSetWinner("It's a tie!")
   } else{
           if (((((computerChoice==='rock'&&(playerChoice==='paper'||playerChoice==='spock') )||
               (computerChoice==='paper'&&(playerChoice==='scissors'||playerChoice==='lizard')))||
@@ -87,40 +92,26 @@ function handleRoundWinner(playerChoice,computerChoice){
               (computerChoice==='lizard'&&(playerChoice==='scissors'||playerChoice==='rock')))||
               (computerChoice==='spock'&&(playerChoice==='paper'||playerChoice==='lizard')) )
               {
-                setWinner('You Win!')
-                setPlayerScore(playerScore+1)
+               handleSetWinner('You Win!');
+                setPlayerScore(playerScore+1);
               }
   else{
-              setComputerScore(computerScore+1)
-              setWinner('Computer Wins!')
+              setComputerScore(computerScore+1);
+              handleSetWinner('Computer Wins!');
               }}
-  setTimeout(function(){
-    let div = document.getElementById('winner');
-    div.style.display = "block";
-  },2000)
 
+
+  
 }
 
-
-function handleMatchWinner(){
-  if (roundsLeft>0){
-  setRoundsLeft(roundsLeft-1)
-} else{
-  //modal
-}
-
-}
-
-
-
-  return(<div className="app">
+  return(
+  <div className="app">
 
   <div className="intro">
     <div className="title-container">
     <h1 className="title">Rock Paper Scissors Lizard Spock !</h1>
     </div>
   </div>
-
 
   <div className="game-info">
   <div className="score-container">
@@ -134,10 +125,7 @@ function handleMatchWinner(){
         </div>
     </div>
     </div>
-    <div className="rounds">
-      <p>Rounds left: <span>{roundsLeft}</span></p>
-    </div>
-
+    
     <div className="buttons-princ">
   <div className= "buttons-container">
    
@@ -158,7 +146,7 @@ function handleMatchWinner(){
     <div className= "button-container" id="scissors-container">
     <div className="scissors-button">
       <img className="buttonImage" src={scissors} alt='scissors' 
-        onClick={se=>handleChoosing('scissors')}/>
+        onClick={e=>handleChoosing('scissors')}/>
     </div>
     </div>
 
@@ -179,25 +167,24 @@ function handleMatchWinner(){
   </div>
 
 
-    <div className="winner">
-    <p className="winner-announcer" id="winner">Winner: {winner}</p>
+    <div className="winner" id="winner">
+    <p className="winner-announcer" id="winner-text" >{winner}</p>
     </div>
 
-<div className="container pt-3 border choices-container">
-  <div className="row border">
-
-  <div className="col choice-container border player-container">
-    <p>Your choice</p>
+<div className="container pt-3">
+  <div className="row choices-container">
+  <div className="col choice-container  player-container">
+  <p className="choice-text">Your choice: {playerChoice}</p>
   <img className="choice-image" id="player-choice" src={playerDisplayChoice} alt={playerChoice}/>
   </div>
 
-  <div className="col choice-container border computer-container">
-    <p>Computer choice</p>
+  <div className="col choice-container  computer-container">
+  <p className="choice-text">Computer choice: {computerChoice}</p>
       <img className="choice-image" id="computer-choice" src={computerDisplayChoice} alt={computerChoice}/>
   </div>
   </div>
 </div>
-<h2>you choose: {playerChoice}<span> computer choose: {computerChoice}</span></h2>
+
 </div>)
 }
 
